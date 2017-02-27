@@ -17,6 +17,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'react-rails'
 gem 'sprockets-es6'
 gem 'validate_url'
+gem 'responders'
 
 # gem 'unicorn'
 

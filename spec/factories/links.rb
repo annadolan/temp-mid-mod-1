@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :link do
-    url "http://www.example.com"
+    sequence :url do |n|
+      "http://www.example.com#{n}"
+    end
     title "MyString"
     read false
     user

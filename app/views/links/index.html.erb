@@ -1,17 +1,45 @@
 <div class="container">
 <% if current_user %>
+<div id="flash" class="alert-alert-success"></div>
   Create a new link:
-    <%= render partial: 'form' %>
-    <h1>Links</h1>
-    <% @links.each do |link| %>
-      <%= link_to link.title, link.url %>
-      Read: <%= link.read.to_s %>
-      <% if link.read == false %>
-        <%= link_to "Mark as read", "", class: "read-button", id: "#{link.id}"  %>
-      <% else %>
-        Marked as read
-      <% end %>
-      <hr>
+  <form id="new-link">
+  <label>URL:
+    <input id="link-url">
+  </label>
+  <label>Title:
+    <input id="link-title">
+  </label>
+  <input type="submit" value="Add Link">
+  </form>
+
+  <h1>Links</h1>
+  <div id="links-list">
+   <% @links.each do |link| %>
+   <div class='link' data-id='<%= link.id %>' id="link-<%= link.id %>">
+    <% if link.read %>
+      <p class='link-title read'> <%= link.title %> </p>
+      <p class='link-url read'> <%= link.url %> </p>
+    <% else %>
+      <p class='link-title'> <%= link.title %> </p>
+      <p class='link-url'> <%= link.url %> </p>
     <% end %>
+
+
+    <p class="link_read">
+      Read: <%= link.read %>
+    </p>
+    <p class="link_buttons">
+      <% if link.read == false %>
+        <button class="mark-read">Mark as Read</button>
+      <% else %>
+        <button class="mark-unread">Mark as Unread</button>
+      <% end %>
+      <p><% if link.id %><%= button_to "Edit", edit_link_path(link), { method: :get, class: 'edit-link' } %><% end %></p>
+    </p>
+  </div>
+  <hr>
+    <% end %>
+   </div>
+ </div>
 <% end %>
 </div>
