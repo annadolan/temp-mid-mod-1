@@ -11,6 +11,7 @@
       <% else %>
         Marked as read
       <% end %>
+      <p><% if link.id %><%= link_to "Edit", edit_link_path(link) %><% end %></p>
       <hr>
     <% end %>
 <% end %>
