@@ -10,13 +10,7 @@ $(document).ready(function(){
       url: '/api/v1/links/' + linkId,
       method: 'PATCH',
       data: {read: true}
-    });
-
-    $this.text("Mark as Unread")
-    $this.toggleClass('mark-read mark-unread')
-    $this.parent().siblings('.link_read').text("Read: true")
-    $this.parent().siblings('.link-title').addClass('read')
-    $this.parent().siblings('.link-url').addClass('read')
+    }).then( updateRead($this) );
   })
 
   $('#links-list').on('click', 'button.mark-unread', function(){
@@ -27,12 +21,22 @@ $(document).ready(function(){
       url: '/api/v1/links/' + linkId,
       method: 'PATCH',
       data: {read: false}
-    });
-
-    $this.text("Mark as Read")
-    $this.toggleClass('mark-unread mark-read')
-    $this.parent().siblings('.link_read').text("Read: false")
-    $this.parent().siblings('.link-title').removeClass('read')
-    $this.parent().siblings('.link-url').removeClass('read')
+    }).then(updateUnread($this));
   })
 })
+
+function updateRead($thing) {
+  $thing.text("Mark as Unread")
+  $thing.toggleClass('mark-read mark-unread')
+  $thing.parent().siblings('.link_read').text("Read: true")
+  $thing.parent().siblings('.link-title').addClass('read')
+  $thing.parent().siblings('.link-url').addClass('read')
+}
+
+function updateUnread($thing) {
+  $thing.text("Mark as Read")
+  $thing.toggleClass('mark-unread mark-read')
+  $thing.parent().siblings('.link_read').text("Read: false")
+  $thing.parent().siblings('.link-title').removeClass('read')
+  $thing.parent().siblings('.link-url').removeClass('read')
+}
