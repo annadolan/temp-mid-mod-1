@@ -10,7 +10,7 @@ describe 'A user visits the links index' do
 
     visit root_path
 
-    click_link "Edit"
+    click_button "Edit"
 
     expect(current_path).to eq(edit_link_path(link1))
 
