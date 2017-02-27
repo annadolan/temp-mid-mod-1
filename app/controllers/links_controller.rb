@@ -2,7 +2,7 @@ class LinksController < ApplicationController
   def index
     # @hot_links = Link.hot
     @link = Link.new
-    @links = current_user.links if current_user
+    @links = current_user.links.order(created_at: :desc) if current_user
   end
 
   # def create

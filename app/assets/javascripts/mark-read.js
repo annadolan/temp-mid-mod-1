@@ -14,7 +14,9 @@ $(document).ready(function(){
 
     $this.text("Mark as Unread")
     $this.toggleClass('mark-read mark-unread')
-    $this.parent().siblings('.link_read').text("true")
+    $this.parent().siblings('.link_read').text("Read: true")
+    $this.parent().siblings('.link-title').addClass('read')
+    $this.parent().siblings('.link-url').addClass('read')
   })
 
   $('#links-list').on('click', 'button.mark-unread', function(){
@@ -27,8 +29,10 @@ $(document).ready(function(){
       data: {read: false}
     });
 
-    $this.text("Mark as Unread")
+    $this.text("Mark as Read")
     $this.toggleClass('mark-unread mark-read')
-    $this.parent().siblings('.link_read').text("false")
+    $this.parent().siblings('.link_read').text("Read: false")
+    $this.parent().siblings('.link-title').removeClass('read')
+    $this.parent().siblings('.link-url').removeClass('read')
   })
 })
