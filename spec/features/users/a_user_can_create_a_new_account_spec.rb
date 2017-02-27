@@ -11,7 +11,7 @@ describe "A user visits the signup form" do
     click_on "Create Account"
 
     expect(current_path).to eq(root_path)
-    expect(page).to have_content("You have successfully logged in!")
+    expect(page).to have_content("Your account was created!")
     expect(page).to have_link("Log Out", logout_path)
   end
 
