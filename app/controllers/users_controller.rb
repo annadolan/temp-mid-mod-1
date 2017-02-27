@@ -4,12 +4,19 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_params)
-    if user.save
-      session[:user_id] = user.id
+    @user = User.new(user_params)
+    if @user.save
+      flash[:success] = "You have successfully logged in!"
+      session[:user_id] = @user.id
       redirect_to :root
     else
-      redirect_to :signup
+      if User.find_by(email: params[:user][:email])
+        flash.now[:danger] = "There is already an email address associated with this account."
+        render :new
+      else
+        flash.now[:danger] = "Password confirmation does not match."
+        render :new
+      end
     end
   end
 
