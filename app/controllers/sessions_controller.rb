@@ -7,8 +7,13 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to :root
-    else
-      redirect_to :login
+      flash[:success] = "You have successfully logged in!"
+    elsif params[:email] == "" || params[:password] == "" || params[:password_confirmation] == ""
+      flash.now[:danger] = "Please fill in all fields."
+      render :new
+    elsif !user.authenticate(params[:password])
+      flash.now[:danger] = "The password entered is incorrect."
+      render :new
     end
   end
 
