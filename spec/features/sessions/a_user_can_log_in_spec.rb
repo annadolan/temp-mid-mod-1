@@ -13,6 +13,7 @@ describe "A user visits the login path" do
 
     expect(current_path).to eq(root_path)
     expect(page).to have_content "You have successfully logged in!"
+    expect(page).to have_content "Log Out"
   end
 
   it "and they enter an incorrect password" do
