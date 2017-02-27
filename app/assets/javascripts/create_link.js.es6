@@ -17,6 +17,8 @@ function createLink (event){
   $.post("/api/v1/links", link)
    .then( renderLink )
    .fail( displayFailure )
+
+   $('#flash').append("Your link has saved")
  }
 
 function getLinkData() {
@@ -55,4 +57,6 @@ function clearLink() {
 
 function displayFailure(failureData){
   console.log("FAILED attempt to create new Link: " + failureData.responseText);
+  $('#flash').empty()
+  $('#flash').append(failureData.responseText)
 }

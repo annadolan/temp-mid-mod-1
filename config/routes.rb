@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root to: "links#index"
 
-  resources :links, only: [:index, :new, :create, :edit, :update]
+  resources :links, only: [:index, :edit, :update]
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :links, only: [:update]
+      resources :links, only: [:update, :create]
     end
   end
 end
