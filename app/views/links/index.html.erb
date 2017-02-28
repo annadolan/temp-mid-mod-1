@@ -11,24 +11,31 @@
   </label>
   <input type="submit" value="Add Link">
   </form>
-
+  <br>
+  <input type="text" id="filterInput" placeholder="Filter by title or URL"><button id="filter-by-read">Filter by Read</button><button id="filter-by-unread">Filter by Unread</button>
   <h1>Links</h1>
   <div id="links-list">
-   <% @links.each do |link| %>
-   <div class='link' data-id='<%= link.id %>' id="link-<%= link.id %>">
+    <% @links.each do |link| %>
+    <% if link.read %>
+      <div class='link read-link' data-id='<%= link.id %>' id="link-<%= link.id %>">
+    <% else %>
+      <div class='link unread-link' data-id='<%= link.id %>' id="link-<%= link.id %>">
+    <% end %>
     <% if link.is_top_ten? %>
         <p class="hot"><strong>HOT</strong></p>
     <% end %>
     <% if link.is_number_one? %>
         <p class="top-link"><strong>TOP LINK</strong></p>
     <% end %>
+    <div class="link-filter">
     <% if link.read %>
       <p class='link-title read'> <%= link.title %> </p>
       <p class='link-url read'> <%= link.url %> </p>
     <% else %>
-      <p class='link-title'> <%= link.title %> </p>
-      <p class='link-url'> <%= link.url %> </p>
+      <p class='link-filter link-title'> <%= link.title %> </p>
+      <p class='link-filter link-url'> <%= link.url %> </p>
     <% end %>
+    </div>
 
 
     <p class="link_read">
@@ -42,8 +49,8 @@
       <% end %>
       <p><% if link.id %><%= button_to "Edit", edit_link_path(link), { method: :get, class: 'edit-link' } %><% end %></p>
     </p>
+    <hr>
   </div>
-  <hr>
     <% end %>
    </div>
  </div>
