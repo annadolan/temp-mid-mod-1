@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $('#filterInput').on('keyup', function(){
-    filterLinks();
+    filterLinks($(this));
   })
 
   $('#filter-by-read').on('click', function(){
@@ -14,11 +14,14 @@ $(document).ready(function(){
 
 function filterByRead() {
   $('.unread-link').hide();
+  $('.read-link').show();
 }
 
 function filterByUnread() {
   $('.read-link').hide();
+  $('.unread-link').show();
 }
+
 
 function filterLinks() {
   var input, filter, div, item, linkFilter, linkFilter2, i;
@@ -36,6 +39,4 @@ function filterLinks() {
         items[i].style.display = "none";
       }
     }
-
-
-}
+  }
