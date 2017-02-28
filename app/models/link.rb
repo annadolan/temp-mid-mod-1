@@ -15,7 +15,7 @@ class Link < ApplicationRecord
   end
 
   def is_number_one?
-    if ReadLink.first.url == url
+    if !ReadLink.first.nil? && ReadLink.first.url == url
       return true
     else
       return false
