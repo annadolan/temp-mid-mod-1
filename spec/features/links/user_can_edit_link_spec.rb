@@ -4,6 +4,7 @@ describe 'A user visits the links index' do
 
   it "and clicks edit on a link" do
     user = create(:user)
+    read_link = create(:read_link)
     link1 = create(:link, user: user, title: "One")
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
@@ -18,6 +19,7 @@ describe 'A user visits the links index' do
 
   it "and edits a link" do
     user = create(:user)
+    read_link = create(:read_link)
     link1 = create(:link, user: user, title: "One", url: "http://www.tuing.io")
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
@@ -35,6 +37,7 @@ describe 'A user visits the links index' do
 
   it 'and enters an invalid url' do
     user = create(:user)
+    read_link = create(:read_link)
     link1 = create(:link, user: user, title: "One", url: "http://www.tuing.io")
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)

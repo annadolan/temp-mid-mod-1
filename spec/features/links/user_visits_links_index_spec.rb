@@ -13,6 +13,7 @@ describe 'A user visits the links index' do
   it "and sees their own links only" do
     user = create(:user)
     user2 = create(:user)
+    read_link = create(:read_link)
     link1 = create(:link, user: user, title: "One")
     link2 = create(:link, user: user, title: "Two")
     link3 = create(:link, user: user2, title: "Three")
