@@ -1,25 +1,18 @@
 # URLockBox
 
-## MidModule Assessment
+The URLockbox is an app where an authenticated user can save links. Links can be marked as read, which then adds them to the "Hot Reads" app, where the top ten are listed by number of reads across all users.
 
-The URLockbox is a starter app for the mid-module assessment for backend engineering module4 at TuringSchool of Software and Design.
+### Setup:
 
-Be sure to get familiar with what is already done, and what is not. No features are complete, but there is some set up done for several features. Use commit history if that helps.
+Clone: `git clone https://github.com/annadolan/temp-mid-mod-1.git`
+Checkout the "final" branch: `git checkout final`
+Install dependencies: `bundle install`
+Set up database: `rake db:create db:migrate`
+Run locally: `rails s`
 
-### Testing with PhantomJS using poltergeist
+#### API
 
-The app has phantom.js, a headless webdriver installed for JS testing.
-
-#### Setup
-
-To set it up you will just need to run `npm install phantomjs -g`. Everything else will be installed with Bundle.
-
-#### Use
-
-You can then write capybara feature tests and add `js: true` tag to each test the has JavaScript.  Your tests will execute and recognize your JavaScript.
-
-If you're having problems troubleshooting asynchronous actions (like DOM changes after an AJAX request), [peruse this section of Capybara's docs](https://github.com/teamcapybara/capybara#asynchronous-javascript-ajax-and-friends)
-
-#### Your JavaScript
-
-The major __GOTCHA__ here is that phantomjs doesn't recognize es6. So if you write es6 you will need to make your file extenstion `.js.es6`. You should see an example test in the `spec/features` directory.
+This app includes an API and uses jQuery Ajax for some functionality. The endpoints are as follows:
+`POST /api/v1/links` - creates a new link. Request format: `{ link: { url: url } }`
+`PATCH /api/v1/links/:id` - updates read status on an existing link. Request format: `{ read: false }`
+`POST /api/v1/read_links` - creates a new link for each object in an array of JSON hashes received via a GET request to Hot Reads.
