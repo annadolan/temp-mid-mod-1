@@ -1,0 +1,2 @@
+class ReadLink < ApplicationRecord
+end
