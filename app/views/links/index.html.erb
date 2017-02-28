@@ -15,7 +15,7 @@
   <input type="text" id="filterInput" placeholder="Filter by title or URL"><button id="filter-by-read">Filter by Read</button><button id="filter-by-unread">Filter by Unread</button>
   <h1>Links</h1>
   <div id="links-list">
-    <% if @links %>
+
     <% @links.each do |link| %>
       <% if link.read %>
         <div class='link read-link' data-id='<%= link.id %>' id="link-<%= link.id %>">
@@ -37,7 +37,7 @@
         <p class='link-filter link-url'> <%= link.url %> </p>
       <% end %>
       </div>
-    <% end %>
+
 
 
     <p class="link_read">
