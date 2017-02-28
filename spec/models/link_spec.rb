@@ -21,4 +21,13 @@ RSpec.describe Link, type: :model do
       end
     end
   end
+
+  describe ".is_top_ten?" do
+    it "identifies a link that is in the top ten" do
+      read = ReadLink.create(url: "http://www.turing.io")
+      link = Link.new(url: "http://www.turing.io", title: "Turing")
+
+      expect(link.is_top_ten?).to eq(true)
+    end
+  end
 end
