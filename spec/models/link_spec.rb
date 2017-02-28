@@ -30,4 +30,22 @@ RSpec.describe Link, type: :model do
       expect(link.is_top_ten?).to eq(true)
     end
   end
+
+  describe ".is_number_one?" do
+    it "identifies the top link" do
+      read = ReadLink.create(url: "http://www.turing.io")
+      read2 = ReadLink.create(url: "http://www.ducks.com")
+      link = Link.new(url: "http://www.turing.io", title: "Turing")
+
+      expect(link.is_number_one?).to eq(true)
+    end
+
+    it "identifies only the top link" do
+      read = ReadLink.create(url: "http://www.turing.io")
+      read2 = ReadLink.create(url: "http://www.ducks.com")
+      link = Link.new(url: "http://www.turing.io", title: "Turing")
+      link2 = Link.new(url: "http://www.ducks.com", title: "dux")
+      expect(link2.is_number_one?).to eq(false)
+    end
+  end
 end

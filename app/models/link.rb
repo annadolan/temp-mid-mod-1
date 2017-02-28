@@ -13,4 +13,12 @@ class Link < ApplicationRecord
       return false
     end
   end
+
+  def is_number_one?
+    if ReadLink.first.url == url
+      return true
+    else
+      return false
+    end
+  end
 end
