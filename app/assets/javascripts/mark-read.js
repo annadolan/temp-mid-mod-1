@@ -44,12 +44,12 @@ function updateUnread($thing) {
   $thing.parent().siblings('.link-url').removeClass('read')
 }
 
-function sendToHotReads(url) {
+function sendToHotReads(address) {
   $.ajax({
     url: "https://dry-stream-75456.herokuapp.com/api/v1/links/",
     method: "POST",
     data: {
-          link: { url: url }
+          link: { url: address }
         }
 })
 }
